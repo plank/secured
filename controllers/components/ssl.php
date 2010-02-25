@@ -24,7 +24,6 @@
  * This very simple component attempts to address the above issues. See the README for a sample
  * configuration.
  *
- * @todo Implement $autoRedirect attribute to replace Configure::read('debug') check.
  * @todo Test cases
  */
 
@@ -47,6 +46,13 @@ class SslComponent extends Object {
 	public $https = false;
 
 	/**
+	 * Use this component if this variable is set to true.
+	 *
+	 * @var boolean Redirect if this is true, otherwise do nothing.
+	 */
+	public $autoRedirect = true;
+
+	/**
 	 * Component initialize method.
 	 * Is called before the controller beforeFilter method. All local component initialization
 	 * is done here.
@@ -65,7 +71,7 @@ class SslComponent extends Object {
 			$this->https = true;
 		}
 
-		if (Configure::read('debug') == 0) {
+		if ($this->autoRedirect === true) {
 			$secured = $this->ssled($this->controller->params);
 
 			if ($secured && !$this->https) {
@@ -75,7 +81,6 @@ class SslComponent extends Object {
 				$this->forceNoSSL();
 			}
 		}
-
 	}
 
 	/**

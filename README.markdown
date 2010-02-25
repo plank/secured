@@ -31,7 +31,8 @@ within the `users` controller to be served via HTTPS, and _all_ `store` actions 
     			'users' => 'login',
     			'store' => '*'
     		)
-    	)
+    	),
+    	'autoRedirect' => false  // temporarily disable this component
     );
 
 Requirements:
@@ -43,6 +44,5 @@ Requirements:
 Things that need to be done:
 ----------------------------
  - Test cases
- - Implement `$autoRedirect` attribute to replace Configure::read('debug') check.
  - Add more configurability for specifying the protocol (defaults to http/https) as well
    as the subdomain (defaults to 'www' for secured connections).
