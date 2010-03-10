@@ -111,11 +111,7 @@ class SslComponent extends Object {
 	 */
 	public function forceSSL() {
 		$server = env('SERVER_NAME');
-
-		if (substr($server, 0, 4) === 'www.') {
-			$server = substr($server, 4);
-		}
-		$this->controller->redirect("https://www.$server{$this->controller->here}");
+		$this->controller->redirect("https://$server{$this->controller->here}");
 	}
 
 	/**
@@ -128,11 +124,7 @@ class SslComponent extends Object {
 	 */
 	public function forceNoSSL() {
 		$server = env('SERVER_NAME');
-
-		if (substr($server, 0, 4) === 'www.') {
-			$server = substr($server, 4);
-		}
-		$this->controller->redirect("http://www.$server{$this->controller->here}");
+		$this->controller->redirect("http://$server{$this->controller->here}");
 	}
 
 }
