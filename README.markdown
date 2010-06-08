@@ -32,7 +32,8 @@ within the `users` controller to be served via HTTPS, and _all_ `store` actions 
     			'store' => '*'
     		)
     	),
-    	'autoRedirect' => false  // temporarily disable this component
+    	    'autoRedirect' => false,  // temporarily disable this component
+    	    'prefixes' => 'admin'   //Allow securing areas by prefix routing. In this case, the whole admin area
     );
 
 Requirements:
@@ -44,5 +45,3 @@ Requirements:
 Things that need to be done:
 ----------------------------
  - Test cases
- - Add more configurability for specifying the protocol (defaults to http/https) as well
-   as the subdomain (defaults to 'www' for secured connections).

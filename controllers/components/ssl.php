@@ -45,6 +45,14 @@ class SslComponent extends Object {
 	 */
 	public $https = false;
 
+    /**
+     * Whether or not to secure the entire admin route.
+     * Can take either string with the prefix, or an array of the prefixii?
+     *
+     * @var string || array
+     **/
+    public $prefixes = array();
+
 	/**
 	 * Use this component if this variable is set to true.
 	 *
@@ -91,6 +99,11 @@ class SslComponent extends Object {
 	 * @return boolean True if request should be ssl'ed, false otherwise.
 	 */
 	public function ssled($params) {
+        //Prefix Specific Check - allow securing of entire admin in one swoop
+        if( !empty($this->prefixes) &&  !empty($params['prefix']) && (in_array($params['prefix'], (array)$this->prefixes)) ) {
+            return true;
+        }
+
 		if (!array_key_exists($params['controller'], $this->secured)) {
 			return false;
 		}
