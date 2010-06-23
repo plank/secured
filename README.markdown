@@ -4,13 +4,13 @@ SSL Component
 This Secured component allows you to programmatically define which controller actions
 should be served under a secure HTTPS connection.
 
-Most of the time, this functionality is acheived through judicous use of rewrite/redirect
+Most of the time, this functionality is achieved through judicious use of rewrite/redirect
 rules in your webserver (Apache, Lighhtpd, Nginx, etc.). Defining this logic in your webserver
 is advantageous - an incorrect request never hits your application code, and it could be handled
 by a proxy to ensure that your application servers are not bothered with requests they cannot serve.
 
 However, there are cases where the programmatic definition of which controllers & actions
-is desirable - 1) during development, 2) sitations where you do not have access to `.htaccess`
+is desirable - 1) during development, 2) situations where you do not have access to `.htaccess`
 or the webserver configuration, 3) when static definitions of secured URLs do not suffice.
 
 This very simple component attempts to address the above issues, and allows for a very intuitive
@@ -25,16 +25,16 @@ within the `users` controller to be served via HTTPS, and _all_ `store` actions 
      *
      * @var array Components, with optional configuration directives.
      */
-    public $components = array(
-    	'Secured.Ssl' => array(
-    		'secured' => array(
-    			'users' => 'login',
-    			'store' => '*'
-    		)
-    	),
-    	    'autoRedirect' => false,  // temporarily disable this component
-    	    'prefixes' => 'admin'   //Allow securing areas by prefix routing. In this case, the whole admin area
-    );
+     public $components = array(
+     	'Secured.Ssl' => array(
+     		'secured' => array(
+     			'users' => 'login',
+     			'store' => '*'
+     		),
+     	    'autoRedirect' => true,  // Set to false to temporarily disable this component
+     	    'prefixes' => 'admin'   // Allow securing areas by prefix routing. In this case, the whole admin area
+     	)
+     );
 
 Requirements:
 -------------
